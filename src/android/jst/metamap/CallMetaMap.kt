@@ -1,18 +1,29 @@
 package jst.metamap
 
+import org.apache.cordova.CordovaInterface
 import org.apache.cordova.CordovaPlugin
 import org.apache.cordova.CallbackContext
+import org.apache.cordova.CordovaWebView
+import org.apache.cordova.PluginResult
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
 class CallMetaMap : CordovaPlugin() {
 
+    override fun initialize(cordova: CordovaInterface,webView: CordovaWebView) {
+        super.initialize(cordova, webView)
+        System.out.println("aaaaaaaaaaaa:CordovaPlugin initialize")
+    }
+
     // JSから呼び出されるとこのメソッドが実行される
+    @Throws(JSONException::class)
     override fun execute(action: String, args: JSONArray, callbackContext: CallbackContext): Boolean {
+        System.out.println("aaaaaaaaaaaa:execute action = " + action)
         if (action == "callMetaMap") {
             var result = ""
             val additionalQuery: JSONObject = args.getJSONObject(0)
+            System.out.println("aaaaaaaaaaaa:execute callMetaMap additionalQuery = " + additionalQuery)
             additionalQuery.names()?.let {
                 result += " additionalQuery = "
                 val len = it.length()
@@ -23,6 +34,7 @@ class CallMetaMap : CordovaPlugin() {
                 }
             }
             val language: String = args.getString(1)
+            System.out.println("aaaaaaaaaaaa:execute callMetaMap language = " + language)
             result += " language = $language" 
             callbackContext.success(result)
             return true
