@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="jst-metamap-sdk-plugin"
+    version="0.0.5">
+
+    <name>MataMapSDKPlugin</name>
+    <description>MataMapSDK Plugin For Cordova</description>
+    <author>JST</author>
+    <license>MIT</license>
+
+    <engines>
+        <engine name="cordova" version=">=3.5.0" />
+    </engines>
+
+    <js-module src="www/metamap.js" name="metamap">
+        <clobbers target="metamap" />
+    </js-module>
+
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="CallMetaMap">
+                <param name="ios-package" value="CallMetaMap"/>
+            </feature>
+        </config-file>
+        <source-file src="src/ios/CallMetaMap.swift" target-dir="src/ios" />
+    </platform>
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="CallMetaMap"> 
+                <param name="android-package" value="jst.metamap.CallMetaMap"/>
+            </feature>
+        </config-file>
+        <source-file src="src/android/jst/metamap/CallMetaMap.kt" target-dir="src/jst/metamap" />        
+    </platform>
+</plugin>

@@ -1,0 +1,11 @@
+{
+  "name": "jst-metamap-sdk-plugin",
+  "version": "0.0.4",
+  "cordova": {
+    "id": "jst-metamap-sdk-plugin",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  }
+}
