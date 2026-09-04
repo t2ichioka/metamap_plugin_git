@@ -1,0 +1,492 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.3 (swiftlang-6.2.3.3.21 clang-1700.6.3.2)
+// swift-module-flags: -target arm64-apple-ios16.0 -enable-objc-interop -enable-library-evolution -swift-version 6 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -module-name MetamapPositioning -package-name positioning
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.3
+import CoreLocation
+import CoreMotion
+import Foundation
+import MetamapPositioningCore
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct BeaconSurveyConfiguration : Swift.Sendable {
+  public let baseURL: Foundation.URL
+  public let sessionId: Foundation.UUID
+  public let accessToken: Swift.String
+  public let proximityUUID: Foundation.UUID
+  public let majors: Swift.Set<Swift.UInt16>
+  public let expiresAt: Foundation.Date?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(baseURL: Foundation.URL = PositioningConfiguration.productionBaseURL, sessionId: Foundation.UUID, accessToken: Swift.String, proximityUUID: Foundation.UUID, majors: Swift.Set<Swift.UInt16>, expiresAt: Foundation.Date? = nil) throws
+  #endif
+  public init(deepLink: Foundation.URL, baseURL: Foundation.URL = PositioningConfiguration.productionBaseURL) throws
+}
+public enum BeaconSurveyEvent : Swift.Sendable {
+  case status(Swift.String)
+  case uploaded(Swift.Int)
+  case error(MetamapPositioning.MetamapPositioningError)
+}
+@_hasMissingDesignatedInitializers @_Concurrency.MainActor final public class MetamapBeaconSurveyClient {
+  nonisolated final public let events: _Concurrency.AsyncStream<MetamapPositioning.BeaconSurveyEvent>
+  @_Concurrency.MainActor convenience public init(configuration: MetamapPositioning.BeaconSurveyConfiguration)
+  @_Concurrency.MainActor final public func requestAuthorization() async throws
+  @_Concurrency.MainActor final public func start() throws
+  @_Concurrency.MainActor final public func stop() async
+  @_Concurrency.MainActor final public func dispose()
+  @objc deinit
+}
+public enum MotionPolicy : Swift.String, Swift.Codable, Swift.Sendable {
+  case preferred
+  case disabled
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum PositioningAuthorizationMode : Swift.String, Swift.Codable, Swift.Sendable {
+  case foregroundNavigation
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct PositioningConfiguration : Swift.Sendable {
+  public static let productionBaseURL: Foundation.URL
+  public let baseURL: Foundation.URL
+  public let mapSlug: Swift.String
+  public let groupId: Foundation.UUID?
+  public let bleTest: Swift.Bool
+  public let beaconDiagnosticsEnabled: Swift.Bool
+  public let maxOfflineAge: Foundation.TimeInterval
+  public let motionPolicy: MetamapPositioning.MotionPolicy
+  public let bootstrapTokenProvider: (@Sendable () async throws -> Swift.String)?
+  public let diagnosticEventHandler: (@Sendable (MetamapPositioningCore.ReplayEvent) -> Swift.Void)?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(baseURL: Foundation.URL = Self.productionBaseURL, mapSlug: Swift.String, groupId: Foundation.UUID? = nil, bleTest: Swift.Bool = false, beaconDiagnosticsEnabled: Swift.Bool = false, maxOfflineAge: Foundation.TimeInterval = 7 * 24 * 60 * 60, motionPolicy: MetamapPositioning.MotionPolicy = .preferred, bootstrapTokenProvider: (@Sendable () async throws -> Swift.String)? = nil, diagnosticEventHandler: (@Sendable (MetamapPositioningCore.ReplayEvent) -> Swift.Void)? = nil)
+  #endif
+  public func validate() throws
+}
+public enum PositioningLifecycleStatus : Swift.String, Swift.Codable, Swift.Sendable {
+  case unconfigured
+  case configured
+  case authorized
+  case acquiring
+  case tracking
+  case degraded
+  case coasting
+  case recovering
+  case lost
+  case pausedBackground
+  case stopped
+  case disposed
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum LocationAuthorizationState : Swift.String, Swift.Codable, Swift.Sendable {
+  case notDetermined, denied, restricted, whenInUse, always
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum MotionAuthorizationState : Swift.String, Swift.Codable, Swift.Sendable {
+  case notDetermined, denied, granted, unavailable
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct CapabilityReport : Swift.Codable, Swift.Equatable, Swift.Sendable {
+  public struct Ble : Swift.Codable, Swift.Equatable, Swift.Sendable {
+    public let supported: Swift.Bool
+    public let enabled: Swift.Bool
+    public let rangingAvailable: Swift.Bool
+    public let foregroundScan: Swift.Bool
+    public let backgroundScan: Swift.String
+    public let directionFinding: Swift.String
+    public let channelSounding: Swift.String
+    public static func == (a: MetamapPositioning.CapabilityReport.Ble, b: MetamapPositioning.CapabilityReport.Ble) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct Authorization : Swift.Codable, Swift.Equatable, Swift.Sendable {
+    public let location: MetamapPositioning.LocationAuthorizationState
+    public let preciseLocation: Swift.Bool
+    public let bluetoothScan: Swift.String
+    public let motion: MetamapPositioning.MotionAuthorizationState
+    public static func == (a: MetamapPositioning.CapabilityReport.Authorization, b: MetamapPositioning.CapabilityReport.Authorization) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public struct Sensors : Swift.Codable, Swift.Equatable, Swift.Sendable {
+    public let stepDetector: Swift.Bool
+    public let rotationVector: Swift.Bool
+    public let gyroscope: Swift.Bool
+    public let magnetometer: Swift.Bool
+    public let barometer: Swift.Bool
+    public static func == (a: MetamapPositioning.CapabilityReport.Sensors, b: MetamapPositioning.CapabilityReport.Sensors) -> Swift.Bool
+    public func encode(to encoder: any Swift.Encoder) throws
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public let platform: Swift.String
+  public let osVersion: Swift.String
+  public let sdkVersion: Swift.String
+  public let ble: MetamapPositioning.CapabilityReport.Ble
+  public let authorization: MetamapPositioning.CapabilityReport.Authorization
+  public let sensors: MetamapPositioning.CapabilityReport.Sensors
+  public let selectedProfile: Swift.String
+  public static func == (a: MetamapPositioning.CapabilityReport, b: MetamapPositioning.CapabilityReport) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ManifestIdentity : Swift.Codable, Swift.Equatable, Swift.Sendable {
+  public let mapId: Foundation.UUID
+  public let groupId: Foundation.UUID
+  public let revision: Swift.Int
+  public static func == (a: MetamapPositioning.ManifestIdentity, b: MetamapPositioning.ManifestIdentity) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_spi(BluetoothPilot) public struct PilotManifestMapContext : Swift.Sendable {
+  @_spi(BluetoothPilot) public let identity: MetamapPositioning.ManifestIdentity
+  @_spi(BluetoothPilot) public let floors: [MetamapPositioningCore.PositioningFloor]
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(BluetoothPilot) public func floorLabel(for floorId: Foundation.UUID) -> Swift.String?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(BluetoothPilot) public func wgs84Position(x: Swift.Double, z: Swift.Double, floorId: Foundation.UUID) throws -> MetamapPositioningCore.Wgs84Position?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(BluetoothPilot) public func localPosition(longitude: Swift.Double, latitude: Swift.Double, floorId: Foundation.UUID) throws -> MetamapPositioningCore.LocalPosition?
+  #endif
+}
+public struct PositioningUpdate : Swift.Codable, Swift.Equatable, Swift.Sendable {
+  public let mapId: Foundation.UUID
+  public let groupId: Foundation.UUID
+  public let estimate: MetamapPositioningCore.PositionEstimate
+  public let wgs84: MetamapPositioningCore.Wgs84Position?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(mapId: Foundation.UUID, groupId: Foundation.UUID, estimate: MetamapPositioningCore.PositionEstimate, wgs84: MetamapPositioningCore.Wgs84Position?)
+  #endif
+  public static func == (a: MetamapPositioning.PositioningUpdate, b: MetamapPositioning.PositioningUpdate) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct MotionHeadingReading : Swift.Codable, Swift.Equatable, Swift.Sendable {
+  public let localHeadingDeg: Swift.Double?
+  public let magneticFieldAccuracy: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(localHeadingDeg: Swift.Double?, magneticFieldAccuracy: Swift.String?)
+  #endif
+  public static func == (a: MetamapPositioning.MotionHeadingReading, b: MetamapPositioning.MotionHeadingReading) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct BeaconSignalReading : Swift.Codable, Swift.Equatable, Swift.Sendable {
+  public let beaconId: Foundation.UUID
+  public let uuid: Swift.String
+  public let major: Swift.Int
+  public let minor: Swift.Int
+  public let floorId: Foundation.UUID
+  public let rssiDbm: Swift.Double
+  public let smoothedRssiDbm: Swift.Double
+  public let radioDistanceM: Swift.Double
+  public let configuredPosition: MetamapPositioningCore.LocalPosition
+  public let configuredWgs84: MetamapPositioningCore.Wgs84Position
+  public let devicePosition: MetamapPositioningCore.LocalPosition?
+  public let deviceWgs84: MetamapPositioningCore.Wgs84Position?
+  public let configuredDistanceM: Swift.Double?
+  public let distanceDeltaM: Swift.Double?
+  public let monotonicTimestampMs: Swift.Int64
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(beaconId: Foundation.UUID, uuid: Swift.String, major: Swift.Int, minor: Swift.Int, floorId: Foundation.UUID, rssiDbm: Swift.Double, smoothedRssiDbm: Swift.Double, radioDistanceM: Swift.Double, configuredPosition: MetamapPositioningCore.LocalPosition, configuredWgs84: MetamapPositioningCore.Wgs84Position, devicePosition: MetamapPositioningCore.LocalPosition?, deviceWgs84: MetamapPositioningCore.Wgs84Position?, configuredDistanceM: Swift.Double?, distanceDeltaM: Swift.Double?, monotonicTimestampMs: Swift.Int64)
+  #endif
+  public static func == (a: MetamapPositioning.BeaconSignalReading, b: MetamapPositioning.BeaconSignalReading) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum PositioningUserAction : Swift.String, Swift.Codable, Swift.Sendable {
+  case none
+  case checkConfiguration
+  case retry
+  case requestPermission
+  case enableBluetooth
+  case enablePreciseLocation
+  case openAppSettings
+  case selectLocationManually
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct MetamapPositioningError : Swift.Error, Foundation.LocalizedError, Swift.Codable, Swift.Equatable, Swift.Sendable {
+  public enum Code : Swift.String, Swift.Codable, Swift.Sendable {
+    case configurationInvalid
+    case mapNotFound
+    case mapAccessDenied
+    case webContentLoadFailed
+    case bridgeHandshakeFailed
+    case bridgeUnsupported
+    case bridgeMapMismatch
+    case manifestUnavailable
+    case manifestExpired
+    case manifestUnsupported
+    case locationPermissionDenied
+    case preciseLocationRequired
+    case bluetoothPermissionDenied
+    case bluetoothDisabled
+    case bleUnsupported
+    case motionPermissionDenied
+    case scanStartFailed
+    case scanRuntimeFailed
+    case noRegisteredBeacons
+    case insufficientSignals
+    case pausedBackground
+    case positionLost
+    case backgroundModeUnavailable
+    case backgroundStartNotAllowed
+    case backgroundInterrupted
+    case surveySessionExpired
+    case surveyUploadFailed
+    case internalInvariantViolation
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(rawValue: Swift.String)
+    #endif
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public let code: MetamapPositioning.MetamapPositioningError.Code
+  public let message: Swift.String
+  public let recoverable: Swift.Bool
+  public let userAction: MetamapPositioning.PositioningUserAction
+  public let debugDetail: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(code: MetamapPositioning.MetamapPositioningError.Code, message: Swift.String, recoverable: Swift.Bool, userAction: MetamapPositioning.PositioningUserAction, debugDetail: Swift.String? = nil)
+  #endif
+  public static func configurationInvalid(_ detail: Swift.String) -> MetamapPositioning.MetamapPositioningError
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var errorDescription: Swift.String? {
+    get
+  }
+  #endif
+  public static func == (a: MetamapPositioning.MetamapPositioningError, b: MetamapPositioning.MetamapPositioningError) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum MetamapPositioningEvent : Swift.Sendable {
+  case position(MetamapPositioning.PositioningUpdate)
+  case beaconSignals([MetamapPositioning.BeaconSignalReading])
+  case motionHeading(MetamapPositioning.MotionHeadingReading)
+  case status(MetamapPositioning.PositioningLifecycleStatus)
+  case capabilities(MetamapPositioning.CapabilityReport)
+  case error(MetamapPositioning.MetamapPositioningError)
+}
+public enum MetamapPositioningSDK {
+  public static let version: Swift.String
+}
+@_hasMissingDesignatedInitializers @_Concurrency.MainActor final public class MetamapPositioningClient {
+  nonisolated final public let events: _Concurrency.AsyncStream<MetamapPositioning.MetamapPositioningEvent>
+  @_Concurrency.MainActor final public var status: MetamapPositioning.PositioningLifecycleStatus {
+    get
+  }
+  @_Concurrency.MainActor final public var manifestIdentity: MetamapPositioning.ManifestIdentity? {
+    get
+  }
+  @_Concurrency.MainActor final public var latestUpdate: MetamapPositioning.PositioningUpdate? {
+    get
+  }
+  @_Concurrency.MainActor final public var hasObservedRegisteredBeaconSinceStart: Swift.Bool {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_spi(BluetoothPilot) @_Concurrency.MainActor final public var pilotManifestMapContext: MetamapPositioning.PilotManifestMapContext? {
+    @_spi(BluetoothPilot) get
+  }
+  #endif
+  @_Concurrency.MainActor convenience public init(configuration: MetamapPositioning.PositioningConfiguration)
+  @_Concurrency.MainActor final public func configure() async throws
+  @_Concurrency.MainActor final public func capabilities() -> MetamapPositioning.CapabilityReport
+  @_Concurrency.MainActor final public func requestAuthorization(_ mode: MetamapPositioning.PositioningAuthorizationMode = .foregroundNavigation) async throws
+  @_Concurrency.MainActor final public func start() async throws
+  @_Concurrency.MainActor final public func stop()
+  @_Concurrency.MainActor final public func reset() throws
+  @_Concurrency.MainActor final public func resetPedestrianRoute() throws
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor final public func manifestLocalPosition(longitude: Swift.Double, latitude: Swift.Double, floorId: Foundation.UUID) throws -> MetamapPositioningCore.LocalPosition?
+  #endif
+  @_Concurrency.MainActor final public func dispose()
+  @objc deinit
+}
+public struct PilotGroundTruthPoint : Swift.Codable, Swift.Equatable, Swift.Sendable {
+  public let monotonicTimestampMs: Swift.Int64
+  public let floorId: Foundation.UUID
+  public let x: Swift.Double
+  public let z: Swift.Double
+  public let stationary: Swift.Bool
+  public init(monotonicTimestampMs: Swift.Int64 = PilotDiagnosticRecorder.monotonicTimestampMs, floorId: Foundation.UUID, x: Swift.Double, z: Swift.Double, stationary: Swift.Bool)
+  public static func == (a: MetamapPositioning.PilotGroundTruthPoint, b: MetamapPositioning.PilotGroundTruthPoint) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct PilotFixedPointBeaconSummary : Swift.Codable, Swift.Equatable, Swift.Sendable {
+  public let beaconId: Foundation.UUID
+  public let uuid: Swift.String
+  public let major: Swift.Int
+  public let minor: Swift.Int
+  public let configuredX: Swift.Double
+  public let configuredZ: Swift.Double
+  public let knownDistanceM: Swift.Double
+  public let sampleCount: Swift.Int
+  public let medianRssiDbm: Swift.Double
+  public let rssiMadDb: Swift.Double
+  public let medianRadioDistanceM: Swift.Double
+  public let distanceErrorM: Swift.Double
+  public init(beaconId: Foundation.UUID, uuid: Swift.String, major: Swift.Int, minor: Swift.Int, configuredX: Swift.Double, configuredZ: Swift.Double, knownDistanceM: Swift.Double, sampleCount: Swift.Int, medianRssiDbm: Swift.Double, rssiMadDb: Swift.Double, medianRadioDistanceM: Swift.Double, distanceErrorM: Swift.Double)
+  public static func == (a: MetamapPositioning.PilotFixedPointBeaconSummary, b: MetamapPositioning.PilotFixedPointBeaconSummary) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct PilotFixedPointCalibration : Swift.Codable, Swift.Equatable, Swift.Sendable {
+  public let schema: Swift.String
+  public let id: Foundation.UUID
+  public let floorId: Foundation.UUID
+  public let x: Swift.Double
+  public let z: Swift.Double
+  public let startedAtMonotonicTimestampMs: Swift.Int64
+  public let endedAtMonotonicTimestampMs: Swift.Int64
+  public let beacons: [MetamapPositioning.PilotFixedPointBeaconSummary]
+  public init(id: Foundation.UUID = UUID(), floorId: Foundation.UUID, x: Swift.Double, z: Swift.Double, startedAtMonotonicTimestampMs: Swift.Int64, endedAtMonotonicTimestampMs: Swift.Int64, beacons: [MetamapPositioning.PilotFixedPointBeaconSummary])
+  public static func == (a: MetamapPositioning.PilotFixedPointCalibration, b: MetamapPositioning.PilotFixedPointCalibration) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum PilotDiagnosticRecorderError : Swift.Error, Foundation.LocalizedError, Swift.Equatable {
+  case consentRequired
+  case invalidRunId
+  case invalidMapSlug
+  case retentionOutOfRange
+  case runAlreadyExists
+  case recordingFailed(Swift.String)
+  case replayFixtureIncomplete(Swift.String)
+  case archiveTooLarge
+  case archiveCreationFailed(Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var errorDescription: Swift.String? {
+    get
+  }
+  #endif
+  public static func == (a: MetamapPositioning.PilotDiagnosticRecorderError, b: MetamapPositioning.PilotDiagnosticRecorderError) -> Swift.Bool
+}
+final public class PilotDiagnosticRecorder : @unchecked Swift.Sendable {
+  public static let maximumRetention: Swift.Double
+  public static var monotonicTimestampMs: Swift.Int64 {
+    get
+  }
+  final public let runId: Swift.String
+  final public let runDirectoryURL: Foundation.URL
+  final public let observationsURL: Foundation.URL
+  final public let groundTruthCheckpointsURL: Foundation.URL
+  final public let fixedPointCalibrationsURL: Foundation.URL
+  public init(rootDirectoryURL: Foundation.URL, runId: Swift.String, consentGranted: Swift.Bool, retention: Foundation.TimeInterval = PilotDiagnosticRecorder.maximumRetention, now: Foundation.Date = Date()) throws
+  final public var eventHandler: @Sendable (MetamapPositioningCore.ReplayEvent) -> Swift.Void {
+    get
+  }
+  final public func record(_ event: MetamapPositioningCore.ReplayEvent)
+  final public func recordGroundTruth(_ point: MetamapPositioning.PilotGroundTruthPoint)
+  final public func recordFixedPointCalibration(_ calibration: MetamapPositioning.PilotFixedPointCalibration)
+  final public func finish() throws
+  final public func makeShareArchive(mapSlug: Swift.String, destinationDirectoryURL: Foundation.URL = FileManager.default.temporaryDirectory, now: Foundation.Date = Date()) throws -> Foundation.URL
+  public static func purgeExpiredRuns(in rootDirectoryURL: Foundation.URL, now: Foundation.Date = Date()) throws
+  @objc deinit
+}
+public enum PilotReplayScenario : Swift.String, Swift.Codable, Swift.CaseIterable, Swift.Identifiable, Swift.Sendable {
+  case walking
+  case stationary
+  case mixed
+  case freeRoute
+  public var id: Swift.String {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public typealias AllCases = [MetamapPositioning.PilotReplayScenario]
+  public typealias ID = Swift.String
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [MetamapPositioning.PilotReplayScenario] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum PilotCalibrationPurpose : Swift.String, Swift.Codable, Swift.Sendable {
+  case knownRouteIntercept
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension MetamapPositioning.PilotDiagnosticRecorder {
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func makeReplayFixtureArchive(mapSlug: Swift.String, scenario: MetamapPositioning.PilotReplayScenario, calibrationPurpose: MetamapPositioning.PilotCalibrationPurpose? = nil, destinationDirectoryURL: Foundation.URL = FileManager.default.temporaryDirectory, now: Foundation.Date = Date()) throws -> Foundation.URL
+  #endif
+  public static func interpolateGroundTruth(events: [MetamapPositioningCore.ReplayEvent], checkpoints: [MetamapPositioning.PilotGroundTruthPoint]) throws -> [MetamapPositioning.PilotGroundTruthPoint]
+  public static func eventsOrderedForReplay(_ events: [MetamapPositioningCore.ReplayEvent]) throws -> [MetamapPositioningCore.ReplayEvent]
+}
+extension MetamapPositioning.MetamapBeaconSurveyClient : Swift.Sendable {}
+extension MetamapPositioning.MotionPolicy : Swift.Equatable {}
+extension MetamapPositioning.MotionPolicy : Swift.Hashable {}
+extension MetamapPositioning.MotionPolicy : Swift.RawRepresentable {}
+extension MetamapPositioning.PositioningAuthorizationMode : Swift.Equatable {}
+extension MetamapPositioning.PositioningAuthorizationMode : Swift.Hashable {}
+extension MetamapPositioning.PositioningAuthorizationMode : Swift.RawRepresentable {}
+extension MetamapPositioning.PositioningLifecycleStatus : Swift.Equatable {}
+extension MetamapPositioning.PositioningLifecycleStatus : Swift.Hashable {}
+extension MetamapPositioning.PositioningLifecycleStatus : Swift.RawRepresentable {}
+extension MetamapPositioning.LocationAuthorizationState : Swift.Equatable {}
+extension MetamapPositioning.LocationAuthorizationState : Swift.Hashable {}
+extension MetamapPositioning.LocationAuthorizationState : Swift.RawRepresentable {}
+extension MetamapPositioning.MotionAuthorizationState : Swift.Equatable {}
+extension MetamapPositioning.MotionAuthorizationState : Swift.Hashable {}
+extension MetamapPositioning.MotionAuthorizationState : Swift.RawRepresentable {}
+extension MetamapPositioning.PositioningUserAction : Swift.Equatable {}
+extension MetamapPositioning.PositioningUserAction : Swift.Hashable {}
+extension MetamapPositioning.PositioningUserAction : Swift.RawRepresentable {}
+extension MetamapPositioning.MetamapPositioningError.Code : Swift.Equatable {}
+extension MetamapPositioning.MetamapPositioningError.Code : Swift.Hashable {}
+extension MetamapPositioning.MetamapPositioningError.Code : Swift.RawRepresentable {}
+extension MetamapPositioning.MetamapPositioningClient : Swift.Sendable {}
+extension MetamapPositioning.PilotReplayScenario : Swift.Equatable {}
+extension MetamapPositioning.PilotReplayScenario : Swift.Hashable {}
+extension MetamapPositioning.PilotReplayScenario : Swift.RawRepresentable {}
+extension MetamapPositioning.PilotCalibrationPurpose : Swift.Equatable {}
+extension MetamapPositioning.PilotCalibrationPurpose : Swift.Hashable {}
+extension MetamapPositioning.PilotCalibrationPurpose : Swift.RawRepresentable {}
