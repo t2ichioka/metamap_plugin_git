@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="jst-metamap-sdk-plugin"
-    version="0.0.9">
+    version="0.0.10">
 
     <name>MataMapSDKPlugin</name>
     <description>MataMapSDK Plugin For Cordova</description>
     <author>JST</author>
     <license>MIT</license>
     <engines>
-        <engine name="cordova" version=">=3.5.0" />
+        <engine name="cordova" version=">=7.1.0"/>
+        <engine name="cordova-android" version=">=7.0.0"/>
     </engines>
     <js-module src="www/metamap.js" name="metamap">
         <clobbers target="MetaMap" />
@@ -17,14 +18,16 @@
         <config-file target="config.xml" parent="/*">
             <feature name="CallMetaMap">
                 <param name="ios-package" value="CallMetaMap"/>
+                <param name="onload" value="true" />
             </feature>
         </config-file>
         <source-file src="src/ios/CallMetaMap.swift" target-dir="src/ios" />
     </platform>
-    <platform name="android">
+    <platform name="android" kotlin="1.2.30">
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="CallMetaMap"> 
                 <param name="android-package" value="jst.metamap.CallMetaMap"/>
+                <param name="onload" value="true" />
             </feature>
         </config-file>
         <source-file src="src/android/jst/metamap/CallMetaMap.kt" target-dir="app/src/main/java/jst/metamap" />        
