@@ -2,7 +2,7 @@
 dependencyResolutionManagement {
     repositories {
         maven {
-            url = uri(rootDir.resolve("metamap/maven-repository"))
+            url = uri(rootDir.resolve("maven-repository"))
         }
     }
 }
