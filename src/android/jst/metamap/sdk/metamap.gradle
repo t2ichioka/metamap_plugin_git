@@ -1,13 +1,14 @@
-
-dependencyResolutionManagement {
+ext.postBuildExtras = {
     repositories {
+        google()
+        mavenCentral()
         maven {
             url = uri(rootDir.resolve("metamap/maven-repository"))
         }
     }
+    dependencies {
+        val metamapVersion = rootDir.resolve("metamap/VERSION").readText().trim()
+        implementation("jp.metamaps.positioning:metamap-mapview:$metamapVersion")
+    }
 }
 
-dependencies {
-    val metamapVersion = rootDir.resolve("metamap/VERSION").readText().trim()
-    implementation("jp.metamaps.positioning:metamap-mapview:$metamapVersion")
-}
