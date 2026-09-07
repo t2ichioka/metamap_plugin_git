@@ -15,8 +15,8 @@ import Foundation
         result += " language = \(language)"
 
         let mapController: MapViewController = MapViewController()
-        mapController.additionalQuery = ["d":""]
-        mapController.language = "ja"
+        mapController.additionalQuery = additionalQuery
+        mapController.language = language
         if let navigationController = self.viewController.navigationController {
             navigationController.pushViewController(mapController, animated: true)
         } else {

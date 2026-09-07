@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" id="jp.co.jst.sample.metamap" version="1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" id="jp.go.jst.sample.plugin.metamap" version="1.0.0">
   <name>MetaMap Sample</name>
   <description>Made with Monaca (http://monaca.mobi)</description>
   <author/>
@@ -38,6 +38,10 @@
     <preference name="orientation" value="all"/>
     <preference name="deployment-target" value="15.0" />
     <preference name="pods_ios_min_version" value="12.0" />
+    <!-- For modern Cordova versions -->
+    <preference name="SwiftVersion" value="5.0"/>
+    <!-- Fallback alternative if the above isn't caught by older plugins -->
+    <preference name="UseSwiftLanguageVersion" value="5"/>
     <icon src="/res/ios/icon/icon.png" width="57" height="57"/>
     <icon src="/res/ios/icon/icon@2x.png" width="114" height="114"/>
     <icon src="/res/ios/icon/icon-72.png" width="72" height="72"/>

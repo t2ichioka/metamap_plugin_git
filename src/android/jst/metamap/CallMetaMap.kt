@@ -25,14 +25,15 @@ class CallMetaMap : CordovaPlugin() {
         System.out.println("aaaaaaaaaaaa:execute action = " + action)
         if (action == "callMetaMap") {
             var result = ""
-            val additionalQuery: JSONObject = args.getJSONObject(0)
-            System.out.println("aaaaaaaaaaaa:execute callMetaMap additionalQuery = " + additionalQuery)
-            additionalQuery.names()?.let {
+            val jsonQuery: JSONObject = args.getJSONObject(0)
+            var additionalQuery: HashMap<String, String> = HashMap<String, String>()
+            jsonQuery.names()?.let {
                 result += " additionalQuery = "
                 val len = it.length()
                 for(i in 0..len - 1) {
                     val name = it.get(i) as String
-                    val value = additionalQuery.getString(name)
+                    val value = jsonQuery.getString(name)
+                    additionalQuery[name] = value
                     result += "[$name:$value]"
                 }
             }
@@ -41,8 +42,8 @@ class CallMetaMap : CordovaPlugin() {
             result += " language = $language" 
             activity?.let {
                 val intent = Intent(it.applicationContext, MetaMapActivity::class.java)
-                intent.putExtra("additionalQuery", "")
-                intent.putExtra("language", "")
+                intent.putExtra("additionalQuery", additionalQuery)
+                intent.putExtra("language", language)
                 it.startActivity(intent)
             }
             callbackContext.success(result)
