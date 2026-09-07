@@ -16,7 +16,7 @@ class CallMetaMap : CordovaPlugin() {
     override fun initialize(cordova: CordovaInterface,webView: CordovaWebView) {
         super.initialize(cordova, webView)
         System.out.println("aaaaaaaaaaaa:CordovaPlugin initialize")
-        activity = cordova.activity;
+        activity = cordova.activity
     }
 
     // JSから呼び出されるとこのメソッドが実行される

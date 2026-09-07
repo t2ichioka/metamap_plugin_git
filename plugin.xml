@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="jst-metamap-sdk-plugin"
-    version="0.0.18">
+    version="0.0.19">
 
     <name>MataMapSDKPlugin</name>
     <description>MataMapSDK Plugin For Cordova</description>
@@ -39,6 +39,8 @@
 
         <source-file src="src/android/jst/metamap/CallMetaMap.kt" target-dir="app/src/main/java/jst/metamap" /> 
         <source-file src="src/android/jst/metamap/MetaMapActivity.kt" target-dir="app/src/main/java/jst/metamap" /> 
-        <framework src="sdk/android/metamap/jp.metamaps.positioning:metamap-mapview:0.3.0" custom="true" type="gradleReference" />      
+        <framework src="sdk/android/metamap/matamap.gradle" custom="true" type="gradleReference" />
+        
+        <framework src="jp.metamaps.positioning:metamap-mapview:0.3.0" />      
     </platform>
 </plugin>
