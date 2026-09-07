@@ -15,7 +15,7 @@ import UIKit
         }
         let language = command.arguments[1] as? String ?? ""
         result += " language = \(language)"
-        
+
         loadTask = Task { @MainActor in
             await showMap(additionalQuery: additionalQuery language: language)
         }
@@ -39,7 +39,7 @@ import UIKit
             let mapController: MapViewController = MapViewController()
             mapController.additionalQuery = additionalQuery
             mapController.language = language
-            if let navigationController = self.navigationController {
+            if let navigationController = self.viewController.navigationController {
                 navigationController.pushViewController(mapController, animated: true)
             } else {
                 self.present(UIViewController(), animated: true)

@@ -2,7 +2,7 @@
 dependencyResolutionManagement {
     repositories {
         maven {
-            url = uri(rootDir.resolve("maven-repository"))
+            url = uri(rootDir.resolve("android-sdk/maven-repository"))
             System.out.println("aaaaaaaaaa:url = " + url)
         }
     }
@@ -11,6 +11,6 @@ dependencyResolutionManagement {
 dependencies {
     System.out.println("aaaaaaaaaa:rootDir = " + rootDir.name)
     System.out.println("aaaaaaaaaa:rootDir list = " + rootDir.list())
-    val metamapVersion = rootDir.resolve("metamap/VERSION").readText().trim()
+    val metamapVersion = rootDir.resolve("android-sdk/VERSION").readText().trim()
     implementation("jp.metamaps.positioning:metamap-mapview:$metamapVersion")
 }
