@@ -3,11 +3,14 @@ dependencyResolutionManagement {
     repositories {
         maven {
             url = uri(rootDir.resolve("maven-repository"))
+            System.out.println("aaaaaaaaaa:url = " + url)
         }
     }
 }
 
 dependencies {
+    System.out.println("aaaaaaaaaa:rootDir = " + rootDir.name)
+    System.out.println("aaaaaaaaaa:rootDir list = " + rootDir.list())
     val metamapVersion = rootDir.resolve("metamap/VERSION").readText().trim()
     implementation("jp.metamaps.positioning:metamap-mapview:$metamapVersion")
 }

@@ -3,6 +3,7 @@ import UIKit
 
 @objc(CallMetaMap) class CallMetaMap : CDVPlugin {
 
+    private var loadTask: Task<Void, Never>?
     // JSから呼び出されるメソッド
     @objc(callMetaMap:)
     func callMetaMap(command: CDVInvokedUrlCommand) {
@@ -14,7 +15,11 @@ import UIKit
         }
         let language = command.arguments[1] as? String ?? ""
         result += " language = \(language)"
-        showMap(additionalQuery: additionalQuery language: language)
+        
+        loadTask = Task { @MainActor in
+            await showMap(additionalQuery: additionalQuery language: language)
+        }
+        
         var pluginResult: CDVPluginResult
         
         if !result.isEmpty {
