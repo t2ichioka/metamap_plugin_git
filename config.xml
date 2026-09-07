@@ -93,6 +93,7 @@
     <preference name="GradlePluginKotlinEnabled" value="true" />
     <preference name="GradlePluginKotlinCodeStyle" value="official" />
     <preference name="GradlePluginKotlinVersion" value="1.9.20" />
+    <preference name="android-minSdkVersion" value="34" />
   </platform>
   <platform name="electron">
     <icon src="/res/electron/icon/icon_electron_512.png" width="512" height="512"/>

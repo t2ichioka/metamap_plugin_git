@@ -14,16 +14,7 @@ import UIKit
         }
         let language = command.arguments[1] as? String ?? ""
         result += " language = \(language)"
-
-        let mapController: MapViewController = MapViewController()
-        mapController.additionalQuery = additionalQuery
-        mapController.language = language
-        if let navigationController = self.viewController.navigationController {
-            navigationController.pushViewController(mapController, animated: true)
-        } else {
-            self.present(UIViewController(), animated: true)
-        }
-
+        showMap(additionalQuery: additionalQuery language: language)
         var pluginResult: CDVPluginResult
         
         if !result.isEmpty {
@@ -35,5 +26,19 @@ import UIKit
         }
         // 結果を送信
         self.commandDelegate!.send(pluginResult, callbackId: command.callbackId)
+    }
+
+    @MainActor
+    func showMap(additionalQuery: [String: String], language: String) async {
+        await MainActor.run {
+            let mapController: MapViewController = MapViewController()
+            mapController.additionalQuery = additionalQuery
+            mapController.language = language
+            if let navigationController = self.navigationController {
+                navigationController.pushViewController(mapController, animated: true)
+            } else {
+                self.present(UIViewController(), animated: true)
+            }
+        }
     }
 }
