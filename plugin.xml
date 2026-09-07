@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="jst-metamap-sdk-plugin"
-    version="0.0.21">
+    version="0.0.22">
 
     <name>MataMapSDKPlugin</name>
     <description>MataMapSDK Plugin For Cordova</description>
@@ -22,9 +22,13 @@
         </config-file>
         <source-file src="src/ios/CallMetaMap.swift" target-dir="src/ios" />
         <source-file src="src/ios/MapViewController.swift" target-dir="src/ios" />
+        <source-file src="src/ios/sdk/Metamap.xcframework" framework="true" />
+        <source-file src="src/ios/sdk/MetamapPositioning.xcframework" framework="true" />
+        <source-file src="src/ios/sdk/MetamapPositioningCore.xcframework" framework="true" />
+
         <framework src="src/ios/sdk/Metamap.xcframework" embed="true" custom="true" /> 
         <framework src="src/ios/sdk/MetamapPositioning.xcframework"   embed="true" custom="true" /> 
-        <framework src="src/ios/sdk/Metamap.xcframework" embed="true" custom="true" /> 
+        <framework src="src/ios/sdk/MetamapPositioningCore.xcframework" embed="true" custom="true" /> 
     </platform>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
