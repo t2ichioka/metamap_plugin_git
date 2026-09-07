@@ -13,6 +13,16 @@ import Foundation
         }
         let language = command.arguments[1] as? String ?? ""
         result += " language = \(language)"
+
+        let mapController: MapViewController = MapViewController()
+        mapController.additionalQuery = ["d":""]
+        mapController.language = "ja"
+        if let navigationController = self.viewController.navigationController {
+            navigationController.pushViewController(mapController, animated: true)
+        } else {
+            self.present(UIViewController(), animated: true)
+        }
+
         var pluginResult: CDVPluginResult
         
         if !result.isEmpty {

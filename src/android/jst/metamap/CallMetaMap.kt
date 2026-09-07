@@ -11,9 +11,12 @@ import org.json.JSONObject
 
 class CallMetaMap : CordovaPlugin() {
 
+    var activity: Activity? = null
+
     override fun initialize(cordova: CordovaInterface,webView: CordovaWebView) {
         super.initialize(cordova, webView)
         System.out.println("aaaaaaaaaaaa:CordovaPlugin initialize")
+        activity = cordova.activity;
     }
 
     // JSから呼び出されるとこのメソッドが実行される
@@ -36,6 +39,12 @@ class CallMetaMap : CordovaPlugin() {
             val language: String = args.getString(1)
             System.out.println("aaaaaaaaaaaa:execute callMetaMap language = " + language)
             result += " language = $language" 
+            activity?.let {
+                val intent = Intent(it.applicationContext, MetaMapActivity::class.java)
+                intent.putExtra("additionalQuery", "")
+                intent.putExtra("language", "")
+                it.startActivity(intent)
+            }
             callbackContext.success(result)
             return true
         }
