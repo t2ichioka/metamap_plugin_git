@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 @objc(CallMetaMap) class CallMetaMap : CDVPlugin {
 
