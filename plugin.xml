@@ -25,6 +25,12 @@
         </config-file>
         <source-file src="src/ios/CallMetaMap.swift" target-dir="src/ios" />
         <source-file src="src/ios/MapViewController.swift" target-dir="src/ios" />
+        <source-file src="src/ios/Metamap.xcframework" framework="true" />
+        <source-file src="src/ios/MetamapPositioning.xcframework" framework="true" />
+        <source-file src="src/ios/MetamapPositioningCore.xcframework" framework="true" />
+        <framework src="src/ios/Metamap.xcframework" embed="true" custom="true" /> 
+        <framework src="src/ios/MetamapPositioning.xcframework" embed="true" custom="true" /> 
+        <framework src="src/ios/MetamapPositioningCore.xcframework" embed="true" custom="true" /> 
     </platform>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
