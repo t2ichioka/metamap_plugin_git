@@ -1,7 +1,6 @@
 import Metamap
 import UIKit
 
-@objc(MapViewController)
 @MainActor
 final class MapViewController: UIViewController, MetamapMapViewDelegate {
     private var metamapView: MetamapMapView?
@@ -10,7 +9,6 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
     var additionalQuery: [String: String] = [:]
     var language: String = "ja"
     
-    @objc(viewDidLoad)
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,7 +56,6 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         }
     }
 
-    @objc(viewDidDisappear:)
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         guard isBeingDismissed || isMovingFromParent || navigationController?.isBeingDismissed == true else {

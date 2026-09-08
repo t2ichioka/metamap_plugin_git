@@ -1,11 +1,10 @@
 ext.postBuildExtras = {
-    allprojects {
-        repositories {
-            google()
-            mavenCentral()
-            maven {
-                url = uri(rootDir.resolve("app/src/main/java/libs/maven-repository"))
-            }
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = uri(rootDir.resolve("libs/maven-repository"))
         }
     }
 
