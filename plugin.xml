@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="jst-metamap-sdk-plugin"
-    version="0.0.28">
+    version="0.0.29">
 
     <name>MataMapSDKPlugin</name>
     <description>MataMapSDK Plugin For Cordova</description>
@@ -9,6 +9,9 @@
     <license>MIT</license>
     <engines>
         <engine name="cordova" version=">=3.5.0"/>
+            <engine name="cordova" version=">=3.5.0"/>
+            <engine name="cordova-android" version=">=6.0.0" />
+            <engine name="cordova-ios" version=">=5.0.0" />
     </engines>
     <js-module src="www/metamap.js" name="metamap">
         <clobbers target="MetaMap" />
@@ -22,9 +25,12 @@
         </config-file>
         <source-file src="src/ios/CallMetaMap.swift" target-dir="src/ios" />
         <source-file src="src/ios/MapViewController.swift" target-dir="src/ios" />
-        <framework src="src/ios/sdk/Metamap.xcframework" embed="true" custom="true" /> 
-        <framework src="src/ios/sdk/MetamapPositioning.xcframework" embed="true" custom="true" /> 
-        <framework src="src/ios/sdk/MetamapPositioningCore.xcframework" embed="true" custom="true" /> 
+        <source-file src="src/ios/Metamap.xcframework" framework="true" />
+        <source-file src="src/ios/MetamapPositioning.xcframework" framework="true" />
+        <source-file src="src/ios/MetamapPositioningCore.xcframework" framework="true" />
+        <framework src="src/ios/Metamap.xcframework" embed="true" custom="true" /> 
+        <framework src="src/ios/MetamapPositioning.xcframework" embed="true" custom="true" /> 
+        <framework src="src/ios/MetamapPositioningCore.xcframework" embed="true" custom="true" /> 
     </platform>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
