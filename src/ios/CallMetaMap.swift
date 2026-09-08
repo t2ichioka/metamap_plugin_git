@@ -42,7 +42,7 @@ import UIKit
             if let navigationController = self.viewController.navigationController {
                 navigationController.pushViewController(mapController, animated: true)
             } else {
-                self.present(UIViewController(), animated: true)
+                self.present(mapController, animated: true)
             }
         }
     }

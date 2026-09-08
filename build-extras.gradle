@@ -11,6 +11,5 @@ dependencyResolutionManagement {
 }
 
 dependencies {
-    val metamapVersion = flatDir.resolve("VERSION").readText().trim()
-    implementation("jp.metamaps.positioning:metamap-mapview:$metamapVersion")
+    implementation("jp.metamaps.positioning:metamap-mapview:0.3.0")
 }
