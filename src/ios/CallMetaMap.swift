@@ -1,9 +1,6 @@
 import Foundation
-import UIKit
 
 @objc(CallMetaMap) class CallMetaMap : CDVPlugin {
-
-    private var loadTask: Task<Void, Never>?
     // JSから呼び出されるメソッド
     @objc(callMetaMap:)
     func callMetaMap(command: CDVInvokedUrlCommand) {
