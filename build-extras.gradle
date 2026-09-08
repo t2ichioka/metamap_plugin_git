@@ -3,11 +3,8 @@ ext.postBuildExtras = {
         repositories {
             google()
             mavenCentral()
-            flatDir {
-                 dirs 'src/libs'
-             }
             maven {
-                url = uri(flatDir.resolve("maven-repository"))
+                url = uri(rootDir.resolve("src/main/java/libs/maven-repository"))
             }
         }
     }

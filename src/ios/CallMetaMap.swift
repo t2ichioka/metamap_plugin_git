@@ -1,8 +1,9 @@
 import Foundation
 import UIKit
 
-@MainActor
-@objc(CallMetaMap) class CallMetaMap : CDVPlugin {
+@objc(CallMetaMap)
+@MainActor 
+class CallMetaMap : CDVPlugin {
     // JSから呼び出されるメソッド
     @objc(callMetaMap:)
     func callMetaMap(command: CDVInvokedUrlCommand) {
