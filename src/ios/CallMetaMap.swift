@@ -33,7 +33,7 @@ import UIKit
         if let navigationController = self.viewController.navigationController {
             navigationController.pushViewController(mapController, animated: true)
         } else {
-            self.present(UIViewController(), animated: true)
+            self.viewController.present(mapController, animated: true)
         }
     }
 }
