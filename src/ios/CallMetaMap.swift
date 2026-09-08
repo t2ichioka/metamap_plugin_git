@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 
 @objc(CallMetaMap)
-@MainActor 
 class CallMetaMap : CDVPlugin {
     // JSから呼び出されるメソッド
     @objc(callMetaMap:)
@@ -15,21 +14,20 @@ class CallMetaMap : CDVPlugin {
         }
         let language = command.arguments[1] as? String ?? ""
         result += " language = \(language)"
-        Task {
-            await showMap(additionalQuery: additionalQuery, language: language)
-            var pluginResult: CDVPluginResult
-            if !result.isEmpty {
-                 // JS側に成功データを返す
-                 pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: result)
-            } else {
-                 // JS側にエラーを返す
-                 pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: "なぜゆえかエラー")
-            }
-             // 結果を送信
-            self.commandDelegate!.send(pluginResult, callbackId: command.callbackId)
+        showMap(additionalQuery: additionalQuery, language: language)
+        var pluginResult: CDVPluginResult
+        if !result.isEmpty {
+            // JS側に成功データを返す
+             pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: result)
+        } else {
+           // JS側にエラーを返す
+             pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: "なぜゆえかエラー")
         }
+         // 結果を送信
+        self.commandDelegate!.send(pluginResult, callbackId: command.callbackId)
     }
 
+    @objc(showMap:language:)
     private func showMap(additionalQuery: [String: String], language: String) async {
         let mapController: MapViewController = MapViewController()
         mapController.additionalQuery = additionalQuery
