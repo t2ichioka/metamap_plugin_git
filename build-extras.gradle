@@ -10,7 +10,6 @@ ext.postBuildExtras = {
     }
 
     dependencies {
-        val metamapVersion = rootDir.resolve("app/src/main/java/libs/VERSION").readText().trim()
-        implementation("jp.metamaps.positioning:metamap-mapview:$metamapVersion")
+        implementation("jp.metamaps.positioning:metamap-mapview:0.3.0")
     }
 }
