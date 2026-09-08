@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 @objc(CallMetaMap) class CallMetaMap : CDVPlugin {
     // JSから呼び出されるメソッド
@@ -29,7 +30,7 @@ import Foundation
         let mapController: MapViewController = MapViewController()
         mapController.additionalQuery = additionalQuery
         mapController.language = language
-        if let navigationController = self.navigationController {
+        if let navigationController = self.viewController.navigationController {
             navigationController.pushViewController(mapController, animated: true)
         } else {
             self.present(UIViewController(), animated: true)
