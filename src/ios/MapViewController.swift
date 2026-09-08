@@ -1,10 +1,8 @@
 import Metamap
 import UIKit
 
-@MainActor
 final class MapViewController: UIViewController, MetamapMapViewDelegate {
     private var metamapView: MetamapMapView?
-    private var loadTask: Task<Void, Never>?
     private var isMapReady = false
     var additionalQuery: [String: String] = [:]
     var language: String = "ja"
@@ -29,16 +27,6 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         metamapView = mapView
-
-        loadTask = Task { @MainActor in
-            do {
-                try await mapView.load()
-            } catch is CancellationError {
-                // 画面終了による正常なキャンセル。
-            } catch {
-                // エラー内容をアプリの回復UIへ渡す。
-            }
-        }
     }
 
     func metamapMapView(_ mapView: MetamapMapView, didReceive event: MetamapMapViewEvent) {
@@ -61,7 +49,6 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         guard isBeingDismissed || isMovingFromParent || navigationController?.isBeingDismissed == true else {
             return
         }
-        loadTask?.cancel()
         metamapView?.dispose()
         metamapView = nil
         isMapReady = false
