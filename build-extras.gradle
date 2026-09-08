@@ -1,15 +1,18 @@
-
-dependencyResolutionManagement {
-    repositories {
-        flatDir {
-            dirs 'src/main/java/libs'
-        }
-        maven {
-            url = uri(flatDir.resolve("maven-repository"))
+ext.postBuildExtras = {
+    allprojects {
+        repositories {
+            google()
+            mavenCentral()
+            flatDir {
+                 dirs 'src/main/java/libs'
+             }
+            maven {
+                url = uri(flatDir.resolve("maven-repository"))
+            }
         }
     }
-}
 
-dependencies {
-    implementation("jp.metamaps.positioning:metamap-mapview:0.3.0")
+    dependencies {
+        implementation("jp.metamaps.positioning:metamap-mapview:0.3.0")
+    }
 }
