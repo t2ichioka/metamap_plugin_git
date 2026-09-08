@@ -28,7 +28,7 @@ class CallMetaMap : CDVPlugin {
     }
 
     @objc(showMap:language:)
-    private func showMap(additionalQuery: [String: String], language: String) async {
+    private func showMap(additionalQuery: [String: String], language: String) {
         let mapController: MapViewController = MapViewController()
         mapController.additionalQuery = additionalQuery
         mapController.language = language
