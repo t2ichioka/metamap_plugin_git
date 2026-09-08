@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 
+@MainActor
 @objc(CallMetaMap) class CallMetaMap : CDVPlugin {
     // JSから呼び出されるメソッド
     @objc(callMetaMap:)
@@ -13,8 +14,9 @@ import UIKit
         }
         let language = command.arguments[1] as? String ?? ""
         result += " language = \(language)"
-        showMap(additionalQuery: additionalQuery, language: language)
-        var pluginResult: CDVPluginResult
+        Task {
+            await showMap(additionalQuery: additionalQuery, language: language)
+            var pluginResult: CDVPluginResult
             if !result.isEmpty {
                  // JS側に成功データを返す
                  pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: result)
@@ -24,9 +26,10 @@ import UIKit
             }
              // 結果を送信
             self.commandDelegate!.send(pluginResult, callbackId: command.callbackId)
+        }
     }
 
-    private func showMap(additionalQuery: [String: String], language: String) {
+    private func showMap(additionalQuery: [String: String], language: String) async {
         let mapController: MapViewController = MapViewController()
         mapController.additionalQuery = additionalQuery
         mapController.language = language
