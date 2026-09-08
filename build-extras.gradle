@@ -6,15 +6,11 @@ dependencyResolutionManagement {
         }
         maven {
             url = uri(flatDir.resolve("maven-repository"))
-            System.out.println("aaaaaaaaaa:url = " + url)
         }
     }
 }
 
 dependencies {
-    System.out.println("aaaaaaaaaa:rootDir = " + rootDir.name)
-    System.out.println("aaaaaaaaaa:rootDir list = " + rootDir.list())
-    val metamapVersionTest = flatDir.resolve("copy_VERSION").readText().trim()
     val metamapVersion = flatDir.resolve("VERSION").readText().trim()
     implementation("jp.metamaps.positioning:metamap-mapview:$metamapVersion")
 }
