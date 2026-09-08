@@ -15,11 +15,6 @@ import UIKit
         }
         let language = command.arguments[1] as? String ?? ""
         result += " language = \(language)"
-
-        loadTask = Task { @MainActor in
-            await showMap(additionalQuery: additionalQuery language: language)
-        }
-        
         var pluginResult: CDVPluginResult
         
         if !result.isEmpty {

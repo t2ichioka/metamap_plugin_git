@@ -2,7 +2,7 @@
 dependencyResolutionManagement {
     repositories {
         flatDir {
-            dirs 'src/libs'
+            dirs 'src/main/java/libs'
         }
         maven {
             url = uri(flatDir.resolve("maven-repository"))
