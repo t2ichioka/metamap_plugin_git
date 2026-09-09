@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 
 @objc(CallMetaMap)
+@MainActor
 class CallMetaMap : CDVPlugin {
     // JSから呼び出されるメソッド
     @objc(callMetaMap:)
