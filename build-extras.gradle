@@ -1,15 +1,5 @@
 ext.postBuildExtras = {
-    repositories {
-        google()
-        mavenCentral()
-        maven {
-            System.out.println("aaaaaaaaaaaaaa repositories")
-            url = uri(rootDir.resolve("libs/maven-repository"))
-        }
-    }
-
     dependencies {
-        System.out.println("aaaaaaaaaaaaaa dependencies")
         implementation("jp.metamaps.positioning:metamap-mapview:0.3.0")
     }
 }

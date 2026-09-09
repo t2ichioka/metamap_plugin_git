@@ -1,11 +1,15 @@
 {
   "name": "jst-metamap-sdk-plugin",
-  "version": "0.0.41",
+  "version": "0.0.42",
   "cordova": {
     "id": "jst-metamap-sdk-plugin",
     "platforms": [
       "android",
       "ios"
-    ]
+    ],
+    "devDependencies": {
+        "cordova-android": "^15.1.0",
+        "cordova-ios": "^8.1.1"
+    }
   }
 }
