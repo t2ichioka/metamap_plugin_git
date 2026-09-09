@@ -36,8 +36,8 @@
   <preference name="target-device" value="universal"/>
   <platform name="ios">
     <preference name="orientation" value="all"/>
-    <preference name="deployment-target" value="15.0" />
-    <preference name="pods_ios_min_version" value="12.0" />
+    <preference name="deployment-target" value="16.0" />
+    <preference name="pods_ios_min_version" value="16.0" />
     <!-- For modern Cordova versions -->
     <preference name="SwiftVersion" value="5.0"/>
     <!-- Fallback alternative if the above isn't caught by older plugins -->

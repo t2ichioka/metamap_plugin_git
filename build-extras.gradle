@@ -1,4 +1,13 @@
 ext.postBuildExtras = {
+    allprojects {
+        repositories {
+             google()
+             mavenCentral()
+             maven {
+                 url = uri("${rootDir.absolutePath}/libs/maven-repository")
+            }
+        }
+    }
     dependencies {
         implementation("jp.metamaps.positioning:metamap-mapview:0.3.0")
     }
