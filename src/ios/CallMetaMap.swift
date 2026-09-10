@@ -19,10 +19,10 @@ class CallMetaMap : CDVPlugin {
         var pluginResult: CDVPluginResult
         if !result.isEmpty {
             // JS側に成功データを返す
-             pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: result)
+             pluginResult = CDVPluginResult(status: CDVCommandStatus.ok, messageAs: result)
         } else {
            // JS側にエラーを返す
-             pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: "なぜゆえかエラー")
+             pluginResult = CDVPluginResult(status: CDVCommandStatus.error, messageAs: "なぜゆえかエラー")
         }
          // 結果を送信
         self.commandDelegate!.send(pluginResult, callbackId: command.callbackId)
