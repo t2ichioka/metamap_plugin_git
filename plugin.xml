@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="jst-metamap-sdk-plugin"
-    version="0.0.42">
+    version="0.0.44">
 
     <name>MataMapSDKPlugin</name>
     <description>MataMapSDK Plugin For Cordova</description>
@@ -17,14 +17,11 @@
         <config-file target="config.xml" parent="/*">
             <feature name="CallMetaMap">
                 <param name="ios-package" value="CallMetaMap"/>
-                <param name="onload" value="true" />
+                <param name="onload" value="false" />
             </feature>
         </config-file>
         <source-file src="src/ios/CallMetaMap.swift" target-dir="src/ios" />
         <source-file src="src/ios/MapViewController.swift" target-dir="src/ios" />
-        <source-file src="src/ios/Metamap.xcframework" framework="true" />
-        <source-file src="src/ios/MetamapPositioning.xcframework" framework="true" />
-        <source-file src="src/ios/MetamapPositioningCore.xcframework" framework="true" />
         <framework src="src/ios/Metamap.xcframework" embed="true" custom="true" /> 
         <framework src="src/ios/MetamapPositioning.xcframework" embed="true" custom="true" /> 
         <framework src="src/ios/MetamapPositioningCore.xcframework" embed="true" custom="true" /> 
@@ -33,7 +30,7 @@
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="CallMetaMap"> 
                 <param name="android-package" value="jst.metamap.CallMetaMap"/>
-                <param name="onload" value="true" />
+                <param name="onload" value="false" />
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
@@ -43,7 +40,6 @@
         <source-file src="src/android/jst/metamap/CallMetaMap.kt" target-dir="app/src/main/java/jst/metamap" /> 
         <source-file src="src/android/jst/metamap/MetaMapActivity.kt" target-dir="app/src/main/java/jst/metamap" /> 
         <source-file src="src/android/libs" target-dir="libs" /> 
-        <framework src="jp.metamaps.positioning:metamap-mapview:0.3.0" custom="true" />
         <framework src="build-extras.gradle" custom="true" type="gradleReference" />
     </platform>
 </plugin>
