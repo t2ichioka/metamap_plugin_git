@@ -1,7 +1,9 @@
 import Foundation
+import UIKit
 
-@objc(CallMetaMap) class CallMetaMap : CDVPlugin {
-
+@objc(CallMetaMap)
+@MainActor
+class CallMetaMap : CDVPlugin {
     // JSから呼び出されるメソッド
     @objc(callMetaMap:)
     func callMetaMap(command: CDVInvokedUrlCommand) {
@@ -13,16 +15,27 @@ import Foundation
         }
         let language = command.arguments[1] as? String ?? ""
         result += " language = \(language)"
+        showMap(additionalQuery: additionalQuery, language: language)
         var pluginResult: CDVPluginResult
-        
         if !result.isEmpty {
             // JS側に成功データを返す
-            pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAs: result)
+             pluginResult = CDVPluginResult(status: CDVCommandStatus.ok, messageAs: result)
         } else {
-            // JS側にエラーを返す
-            pluginResult = CDVPluginResult(status: CDVCommandStatus_ERROR, messageAs: "なぜゆえかエラー")
+           // JS側にエラーを返す
+             pluginResult = CDVPluginResult(status: CDVCommandStatus.error, messageAs: "なぜゆえかエラー")
         }
-        // 結果を送信
+         // 結果を送信
         self.commandDelegate!.send(pluginResult, callbackId: command.callbackId)
+    }
+
+    private func showMap(additionalQuery: [String: String], language: String) {
+        let mapController: MapViewController = MapViewController()
+        mapController.additionalQuery = additionalQuery
+        mapController.language = language
+        if let navigationController = self.viewController.navigationController {
+            navigationController.pushViewController(mapController, animated: true)
+        } else {
+            self.viewController.present(mapController, animated: true)
+        }
     }
 }

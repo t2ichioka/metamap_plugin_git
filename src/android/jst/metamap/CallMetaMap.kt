@@ -1,5 +1,7 @@
 package jst.metamap
 
+import android.app.Activity
+import android.content.Intent
 import org.apache.cordova.CordovaInterface
 import org.apache.cordova.CordovaPlugin
 import org.apache.cordova.CallbackContext
@@ -11,9 +13,12 @@ import org.json.JSONObject
 
 class CallMetaMap : CordovaPlugin() {
 
+    var activity: Activity? = null
+
     override fun initialize(cordova: CordovaInterface,webView: CordovaWebView) {
         super.initialize(cordova, webView)
         System.out.println("aaaaaaaaaaaa:CordovaPlugin initialize")
+        activity = cordova.activity
     }
 
     // JSから呼び出されるとこのメソッドが実行される
@@ -22,20 +27,27 @@ class CallMetaMap : CordovaPlugin() {
         System.out.println("aaaaaaaaaaaa:execute action = " + action)
         if (action == "callMetaMap") {
             var result = ""
-            val additionalQuery: JSONObject = args.getJSONObject(0)
-            System.out.println("aaaaaaaaaaaa:execute callMetaMap additionalQuery = " + additionalQuery)
-            additionalQuery.names()?.let {
+            val jsonQuery: JSONObject = args.getJSONObject(0)
+            var additionalQuery: HashMap<String, String> = HashMap<String, String>()
+            jsonQuery.names()?.let {
                 result += " additionalQuery = "
                 val len = it.length()
                 for(i in 0..len - 1) {
                     val name = it.get(i) as String
-                    val value = additionalQuery.getString(name)
+                    val value = jsonQuery.getString(name)
+                    additionalQuery[name] = value
                     result += "[$name:$value]"
                 }
             }
             val language: String = args.getString(1)
             System.out.println("aaaaaaaaaaaa:execute callMetaMap language = " + language)
             result += " language = $language" 
+            activity?.let {
+                val intent = Intent(it.applicationContext, MetaMapActivity::class.java)
+                intent.putExtra("additionalQuery", additionalQuery)
+                intent.putExtra("language", language)
+                it.startActivity(intent)
+            }
             callbackContext.success(result)
             return true
         }
