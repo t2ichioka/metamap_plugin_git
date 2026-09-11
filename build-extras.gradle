@@ -4,11 +4,12 @@ ext.postBuildExtras = {
              google()
              mavenCentral()
              maven {
-                 url = uri("${rootDir.absolutePath}/app/libs/maven-repository")
+                 url = uri("${rootDir.absolutePath}/app/sdk/maven-repository")
             }
         }
     }
     dependencies {
-        implementation("jp.metamaps.positioning:metamap-mapview:0.3.0")
+        val metamapVersion = rootDir.resolve("app/sdk/VERSION").readText().trim()
+        implementation("jp.metamaps.positioning:metamap-mapview:$metamapVersion")
     }
 }
