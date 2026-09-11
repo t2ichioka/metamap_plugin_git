@@ -92,7 +92,7 @@
     <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/android/screen/window_splashscreen_icon.png"/>
     <preference name="GradlePluginKotlinEnabled" value="true" />
     <preference name="GradlePluginKotlinCodeStyle" value="official" />
-    <preference name="GradlePluginKotlinVersion" value="1.9.20" />
+    <preference name="GradlePluginKotlinVersion" value="2.4.0" />
     <preference name="android-minSdkVersion" value="34" />
   </platform>
   <platform name="electron">
