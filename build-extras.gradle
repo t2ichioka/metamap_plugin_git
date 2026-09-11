@@ -1,4 +1,6 @@
 ext.postBuildExtras = {
+    def versionFile = new File("${rootDir.absolutePath}/app/libs/sdk", "VERSION")
+
     allprojects {
         repositories {
              google()
@@ -9,6 +11,7 @@ ext.postBuildExtras = {
         }
     }
     dependencies {
-        implementation("jp.metamaps.positioning:metamap-mapview:0.3.0")
+        def metamapVersion = versionFile.text.trim()
+        implementation("jp.metamaps.positioning:metamap-mapview:$metamapVersion")
     }
 }

@@ -12,12 +12,14 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.isNavigationBarHidden = true
-        print("aaaaaaaaaaa:MapViewController viewDidLoad self.language = \(self.language)")
-        print("aaaaaaaaaaa:MapViewController viewDidLoad self.additionalQuery = \(self.additionalQuery)")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(closeButtonTapped(_:)))
+        self.title = "メタマップ"
+
         let mapView = MetamapMapView(configuration: .init(
             mapSlug: "miraikan",
             language: self.language,
+            positioningPolicy: .disabled,
+            positioningStartTrigger: .userAction,
             additionalQuery: self.additionalQuery
         ))
         mapView.delegate = self
@@ -68,5 +70,9 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         metamapView?.dispose()
         metamapView = nil
         isMapReady = false
+    }
+
+    @objc func closeButtonTapped(_ sender: UIBarButtonItem) {
+        self.navigationController?.dismiss(animated: true)
     }
 }
