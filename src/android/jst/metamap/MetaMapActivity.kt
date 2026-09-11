@@ -2,6 +2,8 @@ package jst.metamap
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.MenuItem
+import jp.go.jst.sample.plugin.metamap.R
 import jp.metamaps.mapview.MetamapMapView
 import jp.metamaps.mapview.MetamapMapViewConfiguration
 import jp.metamaps.mapview.MetamapMapViewEvent
