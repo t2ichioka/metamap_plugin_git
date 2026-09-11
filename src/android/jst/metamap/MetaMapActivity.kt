@@ -24,7 +24,7 @@ class MetaMapActivity : Activity() {
             val additionalQuery =
                 intent.getSerializableExtra("additionalQuery", HashMap::class.java) as HashMap<String, String>
             val language = intent.getStringExtra("language")
-            configure(MetamapMapViewConfiguration(mapSlug = "example", language = language, additionalQuery = additionalQuery))
+            configure(MetamapMapViewConfiguration(mapSlug = "miraikan", language = language, additionalQuery = additionalQuery))
             eventListener = { event ->
                 when (event) {
                     is MetamapMapViewEvent.Ready -> isMapReady = true

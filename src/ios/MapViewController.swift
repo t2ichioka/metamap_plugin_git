@@ -13,9 +13,10 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         super.viewDidLoad()
         
         self.navigationController?.isNavigationBarHidden = true
-
+        print("aaaaaaaaaaa:MapViewController viewDidLoad self.language = \(self.language)")
+        print("aaaaaaaaaaa:MapViewController viewDidLoad self.additionalQuery = \(self.additionalQuery)")
         let mapView = MetamapMapView(configuration: .init(
-            mapSlug: "example",
+            mapSlug: "miraikan",
             language: self.language,
             additionalQuery: self.additionalQuery
         ))
@@ -35,8 +36,10 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
                 try await mapView.load()
             } catch is CancellationError {
                 // 画面終了による正常なキャンセル。
+                print("aaaaaaaaaaa:MapViewController viewDidLoad CancellationError")
             } catch {
                 // エラー内容をアプリの回復UIへ渡す。
+                print("aaaaaaaaaaa:MapViewController viewDidLoad Other Error = \(error)")
             }
         }
     }

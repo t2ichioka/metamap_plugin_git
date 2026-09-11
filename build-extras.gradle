@@ -4,7 +4,7 @@ ext.postBuildExtras = {
              google()
              mavenCentral()
              maven {
-                 url = uri("${rootDir.absolutePath}/libs/maven-repository")
+                 url = uri("${rootDir.absolutePath}/app/libs/maven-repository")
             }
         }
     }
