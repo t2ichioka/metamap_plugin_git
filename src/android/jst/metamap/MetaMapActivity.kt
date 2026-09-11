@@ -3,7 +3,6 @@ package jst.metamap
 import android.app.Activity
 import android.os.Bundle
 import android.view.MenuItem
-import jp.go.jst.sample.plugin.metamap.R
 import jp.metamaps.mapview.MetamapMapView
 import jp.metamaps.mapview.MetamapMapViewConfiguration
 import jp.metamaps.mapview.MetamapMapViewEvent
@@ -72,7 +71,7 @@ class MetaMapActivity : Activity() {
 
     override fun onMenuItemSelected(featureId: Int, item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.home -> {
+            android.R.id.home -> {
                 finish()
                 return true
             }
