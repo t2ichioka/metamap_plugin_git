@@ -1,6 +1,5 @@
 package jst.metamap
 
-import android.app.ActionBar
 import android.app.Activity
 import android.os.Bundle
 import jp.metamaps.mapview.MetamapMapView
@@ -23,6 +22,8 @@ class MetaMapActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.title="メタマップ"
         mapView = MetamapMapView(this).apply {
             val additionalQuery =
                 intent.getSerializableExtra("additionalQuery", HashMap::class.java) as HashMap<String, String>
@@ -65,5 +66,15 @@ class MetaMapActivity : Activity() {
         mapView.dispose()
         isMapReady = false
         super.onDestroy()
+    }
+
+    override fun onMenuItemSelected(featureId: Int, item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onMenuItemSelected(featureId, item)
     }
 }

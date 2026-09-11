@@ -36,7 +36,8 @@ class CallMetaMap : CDVPlugin {
             navigationController.pushViewController(mapController, animated: true)
         } else {
             let mapNaviController = UINavigationController(rootViewController: mapController)
-            self.present(mapNaviController, animated: true)
+            mapNaviController.modalPresentationStyle = .fullScreen
+            self.viewController.present(mapNaviController, animated: true)
         }
     }
 }

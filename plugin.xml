@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="jst-metamap-sdk-plugin"
-    version="0.0.52">
+    version="0.0.53">
 
     <name>MataMapSDKPlugin</name>
     <description>MataMapSDK Plugin For Cordova</description>
@@ -34,7 +34,8 @@
             </feature>
         </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <activity android:name="jst.metamap.MetaMapActivity" android:exported="true" >
+            <activity android:name="jst.metamap.MetaMapActivity"
+            android:exported="true" >
                 <intent-filter>
                     <action android:name="android.intent.action.VIEW" />
                 </intent-filter>

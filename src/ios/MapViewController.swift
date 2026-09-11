@@ -12,7 +12,8 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(closeButtonTapped(_:)))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(closeButtonTapped(_:)))
+        self.title = "メタマップ"
 
         let mapView = MetamapMapView(configuration: .init(
             mapSlug: "miraikan",
