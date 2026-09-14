@@ -12,9 +12,10 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(closeButtonTapped(_:)))
+        if isPresented {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(closeButtonTapped(_:)))
+        }
         self.title = "メタマップ"
         print("aaaaaaaaaaa:MapViewController viewDidLoad additionalQuery = \(self.additionalQuery)")
         let mapView = MetamapMapView(configuration: .init(
@@ -38,10 +39,8 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
                 try await mapView.load()
             } catch is CancellationError {
                 // 画面終了による正常なキャンセル。
-                print("aaaaaaaaaaa:MapViewController viewDidLoad CancellationError")
             } catch {
                 // エラー内容をアプリの回復UIへ渡す。
-                print("aaaaaaaaaaa:MapViewController viewDidLoad Other Error = \(error)")
             }
         }
     }
@@ -58,6 +57,13 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         default:
             // SDK更新でイベントが追加される可能性があるため、defaultを残します。
             break
+        }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if  !isPresented {
+            self.navigationController?.isNavigationBarHidden = false
         }
     }
 
