@@ -32,10 +32,7 @@ class MetaMapActivity : Activity() {
             configure(MetamapMapViewConfiguration(
                 mapSlug = "miraikan",
                  language = language,
-                 positioningPolicy = MapViewPositioningPolicy.DISABLED,
-
-                 positioningStartTrigger = MapViewPositioningStartTrigger.USER_ACTION,
-                additionalQuery = additionalQuery
+                 additionalQuery = additionalQuery
             ))
             eventListener = { event ->
                 when (event) {

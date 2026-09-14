@@ -14,12 +14,10 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(closeButtonTapped(_:)))
         self.title = "メタマップ"
-
+        print("aaaaaaaaaaa:MapViewController viewDidLoad additionalQuery = \(self.additionalQuery)")
         let mapView = MetamapMapView(configuration: .init(
             mapSlug: "miraikan",
             language: self.language,
-            positioningPolicy: .disabled,
-            positioningStartTrigger: .userAction,
             additionalQuery: self.additionalQuery
         ))
         mapView.delegate = self
