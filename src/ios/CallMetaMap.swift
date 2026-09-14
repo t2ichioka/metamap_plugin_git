@@ -33,8 +33,10 @@ class CallMetaMap : CDVPlugin {
         mapController.additionalQuery = additionalQuery
         mapController.language = language
         if let navigationController = self.viewController.navigationController {
+            mapController.isPresented = false
             navigationController.pushViewController(mapController, animated: true)
         } else {
+            mapController.isPresented = true
             let mapNaviController = UINavigationController(rootViewController: mapController)
             mapNaviController.modalPresentationStyle = .fullScreen
             self.viewController.present(mapNaviController, animated: true)

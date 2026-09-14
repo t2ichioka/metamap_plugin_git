@@ -8,6 +8,7 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
     private var isMapReady = false
     var additionalQuery: [String: String] = [:]
     var language: String = "ja"
+    var isPresented = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +74,10 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
     }
 
     @objc func closeButtonTapped(_ sender: UIBarButtonItem) {
-        self.navigationController?.dismiss(animated: true)
+        if isPresented {
+            self.navigationController?.dismiss(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
