@@ -12,6 +12,7 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(closeButtonTapped(_:)))
         self.title = "メタマップ"
         print("aaaaaaaaaaa:MapViewController viewDidLoad additionalQuery = \(self.additionalQuery)")
@@ -61,6 +62,7 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = true
         guard isBeingDismissed || isMovingFromParent || navigationController?.isBeingDismissed == true else {
             return
         }

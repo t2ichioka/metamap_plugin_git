@@ -28,6 +28,7 @@ class MetaMapActivity : Activity() {
         mapView = MetamapMapView(this).apply {
             val additionalQuery =
                 intent.getSerializableExtra("additionalQuery", HashMap::class.java) as HashMap<String, String>
+            System.out.println("aaaaaaaaaaaa:MetaMapActivity additionalQuery = " + additionalQuery)
             val language = intent.getStringExtra("language")
             configure(MetamapMapViewConfiguration(
                 mapSlug = "miraikan",
