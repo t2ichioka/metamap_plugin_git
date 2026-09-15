@@ -15,9 +15,10 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
         self.view.backgroundColor = UIColor(red: (41.0/255.0), green: (104.0/255.0), blue: (177.0/255.0), alpha: 1.0)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "＜", style: .plain, target: self, action: #selector(closeButtonTapped(_:)))
+        if isPresented {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(closeButtonTapped(_:)))
+        }
         self.title = "メタマップ"
-        print("aaaaaaaaaaa:MapViewController viewDidLoad additionalQuery = \(self.additionalQuery)")
         let mapView = MetamapMapView(configuration: .init(
             mapSlug: "miraikan",
             language: self.language,
@@ -29,7 +30,7 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         NSLayoutConstraint.activate([
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         metamapView = mapView
