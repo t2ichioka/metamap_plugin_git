@@ -20,7 +20,6 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         self.navigationItem.compactScrollEdgeAppearance = naviAppeance
         self.navigationItem.compactAppearance = naviAppeance
         self.navigationItem.scrollEdgeAppearance = naviAppeance
-        UIBarButtonItem.appearance().tintColor = .white
         if isPresented {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(closeButtonTapped(_:)))
         }

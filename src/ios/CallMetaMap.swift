@@ -29,6 +29,7 @@ class CallMetaMap : CDVPlugin {
     }
 
     private func showMap(additionalQuery: [String: String], language: String) {
+        UIBarButtonItem.appearance().tintColor = .white
         let mapController: MapViewController = MapViewController()
         mapController.additionalQuery = additionalQuery
         mapController.language = language
