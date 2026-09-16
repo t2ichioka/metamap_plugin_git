@@ -69,13 +69,12 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if  !isPresented {
-            self.navigationController?.isNavigationBarHidden = false
+            UIBarButtonItem.appearance().tintColor = .white
         }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        self.navigationController?.isNavigationBarHidden = true
         guard isBeingDismissed || isMovingFromParent || navigationController?.isBeingDismissed == true else {
             return
         }
