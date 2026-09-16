@@ -13,8 +13,14 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-        self.view.backgroundColor = UIColor(red: (41.0/255.0), green: (104.0/255.0), blue: (177.0/255.0), alpha: 1.0)
+        let naviAppeance = UINavigationBarAppearance()
+        naviAppeance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        naviAppeance.backgroundColor =  UIColor(red: (41.0/255.0), green: (104.0/255.0), blue: (177.0/255.0), alpha: 1.0)
+        self.navigationItem.standardAppearance = naviAppeance
+        self.navigationItem.compactScrollEdgeAppearance = naviAppeance
+        self.navigationItem.compactAppearance = naviAppeance
+        self.navigationItem.scrollEdgeAppearance = naviAppeance
+        UIBarButtonItem.appearance().tintColor = .white
         if isPresented {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(closeButtonTapped(_:)))
         }
