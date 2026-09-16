@@ -1,6 +1,8 @@
 package jst.metamap
 
 import android.app.Activity
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
 import jp.metamaps.mapview.MetamapMapView
@@ -25,17 +27,16 @@ class MetaMapActivity : Activity() {
         super.onCreate(savedInstanceState)
         actionBar?.setDisplayHomeAsUpEnabled(true)
         actionBar?.title="メタマップ"
+        actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#2968B1")))
         mapView = MetamapMapView(this).apply {
             val additionalQuery =
                 intent.getSerializableExtra("additionalQuery", HashMap::class.java) as HashMap<String, String>
+            System.out.println("aaaaaaaaaaaa:MetaMapActivity additionalQuery = " + additionalQuery)
             val language = intent.getStringExtra("language")
             configure(MetamapMapViewConfiguration(
                 mapSlug = "miraikan",
                  language = language,
-                 positioningPolicy = MapViewPositioningPolicy.DISABLED,
-
-                 positioningStartTrigger = MapViewPositioningStartTrigger.USER_ACTION,
-                additionalQuery = additionalQuery
+                 additionalQuery = additionalQuery
             ))
             eventListener = { event ->
                 when (event) {

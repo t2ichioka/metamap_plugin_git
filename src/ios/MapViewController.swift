@@ -8,18 +8,20 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
     private var isMapReady = false
     var additionalQuery: [String: String] = [:]
     var language: String = "ja"
+    var isPresented = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(closeButtonTapped(_:)))
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+        self.view.backgroundColor = UIColor(red: (41.0/255.0), green: (104.0/255.0), blue: (177.0/255.0), alpha: 1.0)
+        if isPresented {
+            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(closeButtonTapped(_:)))
+        }
         self.title = "メタマップ"
-
         let mapView = MetamapMapView(configuration: .init(
             mapSlug: "miraikan",
             language: self.language,
-            positioningPolicy: .disabled,
-            positioningStartTrigger: .userAction,
             additionalQuery: self.additionalQuery
         ))
         mapView.delegate = self
@@ -28,7 +30,7 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         NSLayoutConstraint.activate([
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
         ])
         metamapView = mapView
@@ -38,10 +40,8 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
                 try await mapView.load()
             } catch is CancellationError {
                 // 画面終了による正常なキャンセル。
-                print("aaaaaaaaaaa:MapViewController viewDidLoad CancellationError")
             } catch {
                 // エラー内容をアプリの回復UIへ渡す。
-                print("aaaaaaaaaaa:MapViewController viewDidLoad Other Error = \(error)")
             }
         }
     }
@@ -61,8 +61,16 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if  !isPresented {
+            self.navigationController?.isNavigationBarHidden = false
+        }
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        self.navigationController?.isNavigationBarHidden = true
         guard isBeingDismissed || isMovingFromParent || navigationController?.isBeingDismissed == true else {
             return
         }
@@ -73,6 +81,10 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
     }
 
     @objc func closeButtonTapped(_ sender: UIBarButtonItem) {
-        self.navigationController?.dismiss(animated: true)
+        if isPresented {
+            self.navigationController?.dismiss(animated: true)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 }
