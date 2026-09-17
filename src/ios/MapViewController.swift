@@ -16,6 +16,11 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         let naviAppeance = UINavigationBarAppearance()
         naviAppeance.titleTextAttributes = [.foregroundColor: UIColor.white]
         naviAppeance.backgroundColor =  UIColor(red: (41.0/255.0), green: (104.0/255.0), blue: (177.0/255.0), alpha: 1.0)
+        let backImage = UIImage(systemName: "chevron.backward")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        naviAppeance.setBackIndicatorImage(backImage, transitionMaskImage: backImage)
+        let barButtonAppearance = UIBarButtonItemAppearance()
+        barButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
+        naviAppeance.backButtonAppearance = barButtonAppearance
         self.navigationItem.standardAppearance = naviAppeance
         self.navigationItem.compactScrollEdgeAppearance = naviAppeance
         self.navigationItem.compactAppearance = naviAppeance
@@ -66,13 +71,6 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if  !isPresented {
-            UIBarButtonItem.appearance().tintColor = .white
-        }
-    }
-
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         guard isBeingDismissed || isMovingFromParent || navigationController?.isBeingDismissed == true else {
@@ -85,10 +83,6 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
     }
 
     @objc func closeButtonTapped(_ sender: UIBarButtonItem) {
-        if isPresented {
-            self.navigationController?.dismiss(animated: true)
-        } else {
-            self.navigationController?.popViewController(animated: true)
-        }
+        self.navigationController?.dismiss(animated: true)
     }
 }
