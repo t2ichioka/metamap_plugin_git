@@ -36,12 +36,6 @@
   <preference name="target-device" value="universal"/>
   <platform name="ios">
     <preference name="orientation" value="all"/>
-    <preference name="deployment-target" value="16.0" />
-    <preference name="pods_ios_min_version" value="16.0" />
-    <!-- For modern Cordova versions -->
-    <preference name="SwiftVersion" value="5.0"/>
-    <!-- Fallback alternative if the above isn't caught by older plugins -->
-    <preference name="UseSwiftLanguageVersion" value="5"/>
     <icon src="/res/ios/icon/icon.png" width="57" height="57"/>
     <icon src="/res/ios/icon/icon@2x.png" width="114" height="114"/>
     <icon src="/res/ios/icon/icon-72.png" width="72" height="72"/>
@@ -90,10 +84,6 @@
     <icon src="/res/android/icon/xxxhdpi.png" density="xxxhdpi"/>
     <preference name="AndroidWindowSplashScreenBackground" value="#ffffff"/>
     <preference name="AndroidWindowSplashScreenAnimatedIcon" value="res/android/screen/window_splashscreen_icon.png"/>
-    <preference name="GradlePluginKotlinEnabled" value="true" />
-    <preference name="GradlePluginKotlinCodeStyle" value="official" />
-    <preference name="GradlePluginKotlinVersion" value="2.4.0" />
-    <preference name="android-minSdkVersion" value="34" />
   </platform>
   <platform name="electron">
     <icon src="/res/electron/icon/icon_electron_512.png" width="512" height="512"/>
