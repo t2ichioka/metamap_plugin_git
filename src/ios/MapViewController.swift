@@ -21,6 +21,7 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         let barButtonAppearance = UIBarButtonItemAppearance()
         barButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.white]
         naviAppeance.backButtonAppearance = barButtonAppearance
+        naviAppeance.buttonAppearance = barButtonAppearance
         self.navigationItem.standardAppearance = naviAppeance
         self.navigationItem.compactScrollEdgeAppearance = naviAppeance
         self.navigationItem.compactAppearance = naviAppeance
