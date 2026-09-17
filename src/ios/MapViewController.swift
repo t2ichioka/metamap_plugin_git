@@ -27,7 +27,9 @@ final class MapViewController: UIViewController, MetamapMapViewDelegate {
         self.navigationItem.compactAppearance = naviAppeance
         self.navigationItem.scrollEdgeAppearance = naviAppeance
         if isPresented {
-            self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "閉じる", style: .done, target: self, action: #selector(closeButtonTapped(_:)))
+            let barButton = UIBarButtonItem(title: "閉じる", style: .plain, target: self, action: #selector(closeButtonTapped(_:)))
+            barButton.tintColor = .white
+            self.navigationItem.leftBarButtonItem = barButton
         }
         self.title = "メタマップ"
         let mapView = MetamapMapView(configuration: .init(
