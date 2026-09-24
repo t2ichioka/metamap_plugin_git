@@ -1,5 +1,0 @@
-
-NSLocationWhenInUseUsageDescription = "館内で現在地と経路を表示するため、近くのビーコンを利用します。";
-NSMotionUsageDescription = "歩行中の現在地を滑らかに更新するため、端末のモーションを利用します。";
-"MetaMapTitle"="メタマップ";
-"MetaMapCloseButton"="閉じる";
