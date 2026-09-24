@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="jst-metamap-sdk-plugin"
-    version="0.0.74">
+    version="0.0.75">
 
     <name>MataMapSDKPlugin</name>
     <description>MataMapSDK Plugin For Cordova</description>
@@ -25,16 +25,16 @@
         <framework src="src/ios/Metamap.xcframework" embed="true" custom="true" /> 
         <framework src="src/ios/MetamapPositioning.xcframework" embed="true" custom="true" /> 
         <framework src="src/ios/MetamapPositioningCore.xcframework" embed="true" custom="true" /> 
-        <resource-file src="src/ios/res/ja.lproj/InfoPlist.strings" target="ja.lproj/InfoPlist.strings"/>
-        <resource-file src="src/ios/res/en.lproj/InfoPlist.strings" target="en.lproj/InfoPlist.strings">
-        <edit-config file="ja.lproj/Localizable.strings" mode="merge">
-            <string name=>"MetaMapTitle"="メタマップ";</string>
-            <string name=>"MetaMapCloseButton"="閉じる";</string>
-        </edit-config>
-        <edit-config file="en.lproj/Localizable.strings" mode="merge">
-            <string name=>"MetaMapTitle"="MetaMap";</string>
-            <string name=>"MetaMapCloseButton"="Close";</string>
-        </edit-config>
+        <config-file target="*-Info.plist" parent="CFBundleLocalizations">
+            <array>
+                <string>en</string>
+                <string>ja</string>
+            </array>
+        </config-file>
+        <resource-file src="src/ios/res/ja.lproj/Localizable.strings" target="ja.lproj/Localizable.strings"/>
+        <resource-file src="src/ios/res/en.lproj/Localizable.strings" target="en.lproj/Localizable.strings">
+        <resource-file src="src/ios/res/ios/ja.lproj/InfoPlist.strings" target="ja.lproj/InfoPlist.strings"/>
+        <resource-file src="src/ios/res/ios/en.lproj/InfoPlist.strings" target="en.lproj/InfoPlist.strings"/>
     </platform>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
@@ -54,14 +54,8 @@
         <source-file src="src/android/jst/metamap/CallMetaMap.kt" target-dir="app/src/main/java/jst/metamap" /> 
         <source-file src="src/android/jst/metamap/MetaMapActivity.kt" target-dir="app/src/main/java/jst/metamap" /> 
         <source-file src="src/android/sdk" target-dir="libs" /> 
-        <edit-config file="app/res/values-ja/string.xml" target="/resources" mode="merge">
-            <string name="metamap_title">メタマップ</string>
-            <string name="metamap_close_button">表示したい文字列</string>
-        </edit-config>
-        <edit-config file="app/res/values-en/string.xml" target="/resources" mode="merge">
-            <string name="metamap_title">MetaMap</string>
-            <string name="metamap_close_button">Close</string>
-        </edit-config>
+        <resource-file src="src/android/res/values-ja/string.xml" target-dir="res/values-ja" />
+        <resource-file src="src/android/res/values-en/string.xml" target-dir="res/values-en" /> 
         <framework src="build-extras.gradle" custom="true" type="gradleReference" />
     </platform>
 </plugin>
