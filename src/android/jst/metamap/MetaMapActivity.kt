@@ -26,7 +26,7 @@ class MetaMapActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         actionBar?.setDisplayHomeAsUpEnabled(true)
-        actionBar?.title="メタマップ"
+        actionBar?.title=getString(R.string.metamap_title)
         actionBar?.setBackgroundDrawable(ColorDrawable(Color.parseColor("#2968B1")))
         mapView = MetamapMapView(this).apply {
             val additionalQuery =
