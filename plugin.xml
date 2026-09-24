@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="jst-metamap-sdk-plugin"
-    version="0.0.71">
+    version="0.0.72">
 
     <name>MataMapSDKPlugin</name>
     <description>MataMapSDK Plugin For Cordova</description>
@@ -27,12 +27,12 @@
         <framework src="src/ios/MetamapPositioningCore.xcframework" embed="true" custom="true" /> 
         <source-file src="/src/ios/res/ja.lproj/InfoPlist.strings" target="ja.lproj/InfoPlist.strings"/>
         <source-file src="/src/ios/res/en.lproj/InfoPlist.strings" target="en.lproj/InfoPlist.strings"/>
-        <config-file platform="ios" parent="CFBundleLocalizations" target="*-Info.plist">
+        <config-file target="*-Info.plist" parent="CFBundleLocalizations">
             <array>
                 <string>en</string>
                 <string>ja</string>
             </array>
-    </config-file>
+        </config-file>
     </platform>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
@@ -53,7 +53,7 @@
         <source-file src="src/android/jst/metamap/MetaMapActivity.kt" target-dir="app/src/main/java/jst/metamap" /> 
         <source-file src="src/android/sdk" target-dir="libs" /> 
         <source-file src="src/android/res/values/string.xml" target-dir="app/res/values" /> 
-        <source-file src="src/android/res/values-en/string.xml" target-dir="app/res/values" /> 
+        <source-file src="src/android/res/values-en/string.xml" target-dir="app/res/values-en" /> 
         <framework src="build-extras.gradle" custom="true" type="gradleReference" />
     </platform>
 </plugin>
