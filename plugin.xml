@@ -32,7 +32,7 @@
             </array>
         </config-file>
         <resource-file src="src/ios/res/ja.lproj/Localizable.strings" target="ja.lproj/Localizable.strings"/>
-        <resource-file src="src/ios/res/en.lproj/Localizable.strings" target="en.lproj/Localizable.strings">
+        <resource-file src="src/ios/res/en.lproj/Localizable.strings" target="en.lproj/Localizable.strings" />
         <resource-file src="src/ios/res/ios/ja.lproj/InfoPlist.strings" target="ja.lproj/InfoPlist.strings"/>
         <resource-file src="src/ios/res/ios/en.lproj/InfoPlist.strings" target="en.lproj/InfoPlist.strings"/>
     </platform>
