@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="jst-metamap-sdk-plugin"
-    version="0.0.81">
+    version="0.0.82">
 
     <name>MataMapSDKPlugin</name>
     <description>MataMapSDK Plugin For Cordova</description>
@@ -31,10 +31,8 @@
                 <string>ja</string>
             </array>
         </config-file>
-        <resource-file src="src/ios/res/ja.lproj/Localizable.strings" target="ja.lproj/Localizable.strings"/>
-        <resource-file src="src/ios/res/en.lproj/Localizable.strings" target="en.lproj/Localizable.strings"/>
-        <resource-file src="src/ios/res/ja.lproj/InfoPlist.strings" target="ja.lproj/InfoPlist.strings"/>
-        <resource-file src="src/ios/res/en.lproj/InfoPlist.strings" target="en.lproj/InfoPlist.strings"/>
+        <resource-file src="src/ios/res/ja.lproj/MetaMapLocalizable.strings" target="ja.lproj/MetaMapLocalizable.strings"/>
+        <resource-file src="src/ios/res/en.lproj/MetaMapLocalizable.strings" target="en.lproj/MetaMapLocalizable.strings"/>
     </platform>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">

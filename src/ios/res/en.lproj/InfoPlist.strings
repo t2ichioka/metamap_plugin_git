@@ -1,2 +1,0 @@
-NSLocationWhenInUseUsageDescription = "Nearby beacons are used to display your current location and route within the facility";
-NSMotionUsageDescription = "The device's motion sensors are used to smoothly update your current location while walking";
