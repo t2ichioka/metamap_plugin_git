@@ -1,6 +1,6 @@
 {
     "name": "jst-metamap-sdk-plugin",
-    "version": "0.0.77",
+    "version": "0.0.78",
     "cordova": {
         "id": "jst-metamap-sdk-plugin",
         "platforms": [
