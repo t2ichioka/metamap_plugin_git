@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.MenuItem
-import jst.metamap.R
 import jp.metamaps.mapview.MetamapMapView
 import jp.metamaps.mapview.MetamapMapViewConfiguration
 import jp.metamaps.mapview.MetamapMapViewEvent
