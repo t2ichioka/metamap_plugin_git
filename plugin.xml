@@ -54,7 +54,7 @@
         <source-file src="src/android/jst/metamap/CallMetaMap.kt" target-dir="app/src/main/java/jst/metamap" /> 
         <source-file src="src/android/jst/metamap/MetaMapActivity.kt" target-dir="app/src/main/java/jst/metamap" /> 
         <source-file src="src/android/sdk" target-dir="libs" /> 
-        <resource-file src="src/android/res/values/metamap_strings.xml" target="app/src/main/res/values-ja/metamap_strings.xml" />
+        <resource-file src="src/android/res/values/metamap_strings.xml" target="app/src/main/res/values/metamap_strings.xml" />
         <resource-file src="src/android/res/values-en/metamap_strings.xml" target="app/src/main/res/values-en/metamap_strings.xml" />
         <framework src="build-extras.gradle" custom="true" type="gradleReference" />
     </platform>
