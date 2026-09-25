@@ -1,11 +1,17 @@
 {
-  "name": "jst-metamap-sdk-plugin",
-  "version": "0.0.68",
-  "cordova": {
-    "id": "jst-metamap-sdk-plugin",
-    "platforms": [
-      "android",
-      "ios"
-    ]
-  }
+    "name": "jst-metamap-sdk-plugin",
+    "version": "0.0.82",
+    "cordova": {
+        "id": "jst-metamap-sdk-plugin",
+        "platforms": [
+            "android",
+            "ios"
+        ],
+        "plugins": {
+            "cordova-custom-config": {}
+        }
+    },
+    "dependencies": {
+        "cordova-custom-config": "5.1.1"
+    }
 }

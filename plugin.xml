@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     id="jst-metamap-sdk-plugin"
-    version="0.0.68">
+    version="0.0.82">
 
     <name>MataMapSDKPlugin</name>
     <description>MataMapSDK Plugin For Cordova</description>
@@ -25,12 +25,14 @@
         <framework src="src/ios/Metamap.xcframework" embed="true" custom="true" /> 
         <framework src="src/ios/MetamapPositioning.xcframework" embed="true" custom="true" /> 
         <framework src="src/ios/MetamapPositioningCore.xcframework" embed="true" custom="true" /> 
-        <config-file parent="NSMotionUsageDescription" target="*-Info.plist">
-            <string>歩行中の現在地を滑らかに更新するため、端末のモーションを利用します。</string>
+        <config-file target="*-Info.plist" parent="CFBundleLocalizations">
+            <array>
+                <string>en</string>
+                <string>ja</string>
+            </array>
         </config-file>
-        <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
-            <string>館内で現在地と経路を表示するため、近くのビーコンを利用します。</string>
-        </config-file>
+        <resource-file src="src/ios/res/ja.lproj/MetaMapLocalizable.strings" target="ja.lproj/MetaMapLocalizable.strings"/>
+        <resource-file src="src/ios/res/en.lproj/MetaMapLocalizable.strings" target="en.lproj/MetaMapLocalizable.strings"/>
     </platform>
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
@@ -50,6 +52,8 @@
         <source-file src="src/android/jst/metamap/CallMetaMap.kt" target-dir="app/src/main/java/jst/metamap" /> 
         <source-file src="src/android/jst/metamap/MetaMapActivity.kt" target-dir="app/src/main/java/jst/metamap" /> 
         <source-file src="src/android/sdk" target-dir="libs" /> 
+        <source-file src="src/android/res/values/metamap_strings.xml" target-dir="app/src/main/res/values" />
+        <source-file src="src/android/res/values-en/metamap_strings.xml" target-dir="app/src/main/res/values-en" />
         <framework src="build-extras.gradle" custom="true" type="gradleReference" />
     </platform>
 </plugin>
